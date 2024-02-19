@@ -15,7 +15,7 @@ word_list = nltk.corpus.words.words()
 word_set = {word.lower() for word in word_list if len(word) == 5}
 
 with open ('words.txt', 'r') as file:
-    words = [word.strip() for word in file.read().split()]
+    words = [word.strip().lower() for word in file.read().split()]
 correct = random.choice(words)
 
 print("Welcome to Wordle in terminal")
@@ -24,7 +24,7 @@ print("Welcome to Wordle in terminal")
 
 for _ in range(0,6):
     guess = input("Enter a five lettered word: ")
-    while not (guess in word_set):
+    while not ((guess in word_set) or (guess in words)):
         guess = input("Enter a valid five lettered word: ")
     for i in range(5):
         if guess[i] == correct[i]:
